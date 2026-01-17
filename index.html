@@ -3,188 +3,728 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Adframe Studio Vienna</title>
-  <meta name="description" content="Ads zur Kundengewinnung für lokale Unternehmen in Österreich." />
+  <meta name="description" content="Ads zur Kundengewinnung für lokale Unternehmen in Österreich. Ad Creatives (Video & Bild) – remote, schnell, ad-ready." />
 
   <style>
-    :root {
-      --bg: #ffffff;
-      --text: #0b0c0f;
-      --muted: #5f6675;
-      --line: #e6e8ee;
+    :root{
+      --bg:#ffffff;
+      --text:#0b0c0f;
+      --muted:#5f6675;
+      --line:#e6e8ee;
+      --soft:#f7f8fa;
+      --shadow: 0 10px 30px rgba(10, 12, 15, 0.06);
+      --radius:16px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .muted{color:var(--muted)}
+    .divider{border:0; border-top:1px solid var(--line); margin:0}
+
+    /* Sticky header */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid rgba(230,232,238,.8);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 0;
+      transition:padding .25s ease;
+    }
+    .topbar.shrink .topbar-inner{ padding:10px 0; }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+      min-width: 160px;
+    }
+    .brand img{height:34px; width:auto; display:block; transition:height .25s ease}
+    .topbar.shrink .brand img{height:28px}
+    .nav{
+      display:flex; gap:18px; align-items:center;
+      font-size:14px;
+    }
+    .nav a{
+      text-decoration:none; color:var(--muted);
+    }
+    .nav a:hover{color:var(--text)}
+    .btn{
+      border:1px solid var(--line);
+      background:var(--bg);
+      padding:10px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-size:14px;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{background:var(--soft); border-color:#d6d9e3; transform:translateY(-1px)}
+    .btn.primary{
+      background:var(--text); color:#fff; border-color:var(--text);
+    }
+    .btn.primary:hover{background:#12151c}
+
+    /* Logo-only header block */
+    header.logo-only{
+      padding:54px 0 34px;
+      text-align:center;
+    }
+    header.logo-only img{
+      max-width:280px;
+      width: min(280px, 70vw);
+      height:auto;
+      display:inline-block;
     }
 
-    * {
-      box-sizing: border-box;
+    /* Sections */
+    section{padding:72px 0}
+    section.tight{padding:56px 0}
+    .section-title{
+      font-size:20px;
+      margin:0 0 12px;
+      letter-spacing:-.01em;
+    }
+    .section-kicker{
+      font-size:14px;
+      color:var(--muted);
+      margin:0 0 18px;
+      max-width: 760px;
     }
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:28px;
+      align-items:start;
+    }
+    .headline{
+      font-size:44px;
+      line-height:1.1;
+      margin:0 0 14px;
+      letter-spacing:-.03em;
+    }
+    .subhead{margin:0 0 18px; color:var(--muted); max-width: 760px}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px}
+    .hero-bullets{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+      background: var(--soft);
+    }
+    .bullet{
+      display:flex; gap:10px; padding:10px 0; border-bottom:1px solid rgba(230,232,238,.7);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .bullet:last-child{border-bottom:0}
+    .dot{
+      width:8px; height:8px; border-radius:999px; background:var(--text); margin-top:6px; flex:0 0 auto;
     }
 
-    /* Header */
-    header {
-      padding: 60px 20px 32px;
-      text-align: center;
+    /* Proof stats */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
     }
-
-    header img {
-      max-width: 400px;
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:20px;
+      background:#fff;
+      box-shadow: var(--shadow);
     }
+    .card.soft{background: var(--soft); box-shadow:none}
+    .stat-num{font-size:22px; margin:0 0 6px}
+    .small{font-size:13px; color:var(--muted)}
 
-    hr {
-      border: none;
-      border-top: 1px solid var(--line);
-      margin: 0;
+    /* Deliverables split */
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      align-items:start;
     }
+    ul.clean{margin:0; padding-left:18px; color:var(--muted)}
+    ul.clean li{margin-bottom:10px}
 
-    /* Main content */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 20px 80px;
+    /* Packages */
+    .packages{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    .pkg{
+      position:relative;
+      transition: transform .15s ease, border-color .15s ease;
     }
-
-    section {
-      margin-bottom: 56px;
+    .pkg:hover{transform: translateY(-3px); border-color:#d6d9e3}
+    .badge{
+      position:absolute; top:14px; right:14px;
+      background:var(--text); color:#fff;
+      font-size:12px; padding:6px 10px; border-radius:999px;
     }
+    .pkg h3{margin:0 0 8px; font-size:18px}
+    .price{font-size:26px; margin:0 0 8px; letter-spacing:-.02em}
+    .once{font-size:12px; color:var(--muted); margin:0 0 14px}
+    .pkg ul{margin:0; padding-left:18px; color:var(--muted)}
+    .pkg li{margin-bottom:8px}
+    .pkg .btnrow{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
 
-    h2 {
-      font-size: 22px;
-      margin-bottom: 18px;
+    /* Examples horizontal scroller */
+    .scroller-wrap{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-
-    p {
-      color: var(--muted);
-      max-width: 720px;
+    .scroller-head{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px 16px;
+      background:var(--soft);
+      border-bottom:1px solid var(--line);
     }
-
-    ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
+    .scroller{
+      display:flex;
+      gap:14px;
+      overflow-x:auto;
+      padding:16px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .stat {
-      border: 1px solid var(--line);
+    .scroller::-webkit-scrollbar{height:10px}
+    .scroller::-webkit-scrollbar-thumb{background:#d8dbe5; border-radius:999px}
+    .ex{
+      flex:0 0 auto;
+      width: 360px;
+      scroll-snap-align: start;
+      border:1px solid var(--line);
       border-radius: 14px;
-      padding: 22px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .thumb{
+      height:200px;
+      background: linear-gradient(135deg, #f2f4f8, #e9ecf4);
+      display:flex; align-items:center; justify-content:center;
+      color:#8b92a3;
+      font-size:13px;
+      position:relative;
+    }
+    /* Placeholder for VIDEO: replace div.thumb with <video ...> later */
+    .ex-meta{padding:12px 12px 14px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .tag{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      padding:4px 8px;
+      border-radius:999px;
+      background:#fff;
     }
 
-    .stat strong {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 6px;
-      color: var(--text);
+    /* Process */
+    .steps{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    .stepnum{font-size:12px; color:var(--muted); letter-spacing:.1em}
+    .step h3{margin:8px 0 8px; font-size:16px}
+    .step p{margin:0; color:var(--muted); font-size:14px}
+
+    /* ROI */
+    .roi{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:start;
+    }
+    .calc{
+      background: var(--soft);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .calc .row{display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid rgba(230,232,238,.7)}
+    .calc .row:last-child{border-bottom:0}
+    .calc .row span{color:var(--muted); font-size:14px}
+    .calc .row strong{font-size:14px}
+
+    /* FAQ accordion */
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+    }
+    details{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:14px 14px;
+      background:#fff;
+      box-shadow: var(--shadow);
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:600;
+      font-size:14px;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:var(--muted); font-size:14px}
+
+    /* Footer / CTA */
+    .final-cta{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:20px;
+      background: var(--soft);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
     }
 
-    .cta {
-      margin-top: 36px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
+    footer{
+      padding:40px 0;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
     }
 
-    .cta a {
-      text-decoration: none;
-      color: var(--text);
-      border: 1px solid var(--line);
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-size: 14px;
+    /* Reveal animations */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.in{
+      opacity:1;
+      transform: translateY(0);
     }
 
-    .cta a:hover {
-      background: #f7f8fa;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      padding: 40px 20px;
-      border-top: 1px solid var(--line);
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+      .packages{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      .roi{grid-template-columns:1fr}
+      .faq{grid-template-columns:1fr}
+      .headline{font-size:38px}
+      .ex{width: 300px}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER: LOGO ONLY -->
-  <header>
-    <img src="images/logo.png" alt="Adframe Studio Vienna Logo" />
+  <!-- Sticky nav -->
+  <div class="topbar" id="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top" aria-label="Adframe Studio Vienna">
+        <img src="images/logo.png" alt="Adframe Studio Vienna" />
+      </a>
+
+      <nav class="nav">
+        <a href="#pakete">Pakete</a>
+        <a href="#beispiele">Beispiele</a>
+        <a href="#ablauf">Ablauf</a>
+        <a class="btn" href="mailto:adframestudio@proton.me">E-Mail</a>
+        <a class="btn primary" href="#kontakt">Anfragen</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Logo-only top block (optional, very clean) -->
+  <header class="logo-only" id="top">
+    <div class="container">
+      <img src="images/logo.png" alt="Adframe Studio Vienna Logo" />
+    </div>
   </header>
 
-  <hr />
+  <hr class="divider" />
 
-  <!-- MAIN CONTENT -->
-  <main>
+  <!-- HERO -->
+  <section class="tight">
+    <div class="container hero reveal">
+      <div>
+        <h1 class="headline">Ads zur Kundengewinnung für lokale Unternehmen in Österreich.</h1>
+        <p class="subhead">
+          Wir liefern performante Creatives (Video & Bild) — remote, schnell und ad-ready.
+          Keine Vor-Ort-Drehs. Kein Imagefilm-Fokus.
+        </p>
 
-    <section>
-      <div class="stats">
-        <div class="stat">
-          <strong>€50.000+</strong>
-          <span>Mitwirkung an Umsatz durch Ads & Creatives (E-Commerce)</span>
+        <div class="hero-actions">
+          <a class="btn primary" href="#pakete">Pakete ansehen</a>
+          <a class="btn" href="#beispiele">Beispiele ansehen</a>
+          <a class="btn" href="mailto:adframestudio@proton.me">Kontakt per E-Mail</a>
         </div>
-        <div class="stat">
-          <strong>&lt; 24h</strong>
-          <span>Antwortzeit an Werktagen</span>
+
+        <p class="small" style="margin-top:14px;">
+          Hinweis: Keine Ergebnisgarantien — wir liefern Creatives & klare Kommunikation, damit Ads sauber testbar sind.
+        </p>
+      </div>
+
+      <div class="hero-bullets">
+        <div class="bullet"><span class="dot"></span><span><strong>€50.000+</strong> Mitwirkung an Umsatz durch Ads & Creatives (E-Commerce Projekte)</span></div>
+        <div class="bullet"><span class="dot"></span><span><strong>&lt; 24h</strong> Antwortzeit an Werktagen</span></div>
+        <div class="bullet"><span class="dot"></span><span><strong>Remote</strong> Produktion ohne Studio-Besuch</span></div>
+        <div class="bullet"><span class="dot"></span><span><strong>Sauber</strong> keine aggressiven Claims / brand-safe Messaging</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section>
+    <div class="container reveal">
+      <h2 class="section-title">Warum Adframe Studio legit ist</h2>
+      <p class="section-kicker">
+        Klarer Fokus auf Kundengewinnung, transparente Arbeitsweise und ad-ready Assets — ohne unnötige Komplexität.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="stat-num">€50.000+</div>
+          <div class="small">Mitwirkung an Online-Umsatz durch Ads & Creatives (E-Commerce Projekte)</div>
         </div>
-        <div class="stat">
-          <strong>Remote</strong>
-          <span>Produktion ohne Studio-Besuch</span>
+        <div class="card">
+          <div class="stat-num">&lt; 24h</div>
+          <div class="small">Antwortzeit (werktags), damit Projekte nicht liegen bleiben</div>
+        </div>
+        <div class="card">
+          <div class="stat-num">Remote</div>
+          <div class="small">Kein Shooting nötig — schneller Output, sauber testbar</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <h2>Leistungen</h2>
-      <ul>
-        <li><strong>Customer Acquisition Ads:</strong> Kurzvideo- und Bild-Ads für lokale Neukundengewinnung</li>
-        <li><strong>Creative Refresh:</strong> Bestehende Inhalte neu gedacht, neu geschnitten, neu getextet</li>
-        <li><strong>Content Packs:</strong> Ad-ready Visuals für Social Media & Werbung</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Arbeitsweise</h2>
-      <ul>
-        <li>Fokus auf Aufmerksamkeit, Klarheit und Call-to-Action</li>
-        <li>Saubere, realistische Kommunikation ohne aggressive Claims</li>
-        <li>Ads für Performance – nicht für Imagefilme</li>
-      </ul>
-
-      <div class="cta">
-        <a href="mailto:adframestudio@proton.me">E-Mail</a>
-        <a href="https://instagram.com/adframestudiovienna" target="_blank" rel="noreferrer">
-          Instagram
-        </a>
+  <!-- DELIVERABLES -->
+  <section>
+    <div class="container split reveal">
+      <div>
+        <h2 class="section-title">Was du bekommst</h2>
+        <p class="section-kicker">
+          Konkrete Deliverables, die du direkt in Ads nutzen kannst — inklusive Hooks & Varianten.
+        </p>
+        <ul class="clean">
+          <li>Kurzvideo-Ads (6–15s) für Reels/Stories</li>
+          <li>Bild-Ads (Feed/Story) mit klarer Message</li>
+          <li>Hook-Varianten (mehrere Einstiege pro Angebot)</li>
+          <li>Formate: 9:16, 1:1, 4:5</li>
+          <li>1 Revision inklusive (Pro Pack: 2)</li>
+        </ul>
       </div>
-    </section>
 
-  </main>
+      <div class="card soft">
+        <h3 style="margin:0 0 10px; font-size:16px;">Wofür es ideal ist</h3>
+        <ul class="clean">
+          <li>Beauty & Wellness (Buchungen/Anfragen)</li>
+          <li>Gastro (Reservierungen, Specials, Events)</li>
+          <li>Lokale Services (Leads/Termine)</li>
+        </ul>
+        <p class="small" style="margin-top:12px;">
+          Wir sind kein Filmstudio. Fokus ist: klare Ads, die testbar sind und Anfragen auslösen sollen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="pakete">
+    <div class="container reveal">
+      <h2 class="section-title">Pakete</h2>
+      <p class="section-kicker">Einmalige Zahlung. Kein Abo. Keine Bindung.</p>
+
+      <div class="packages">
+        <div class="card pkg">
+          <h3>Starter Pack</h3>
+          <div class="price">€349</div>
+          <div class="once">Einmalige Zahlung</div>
+          <ul>
+            <li>3 Video Ads + 3 Bild Ads</li>
+            <li>5 Hook-Varianten</li>
+            <li>1 Revision</li>
+            <li>Delivery: 3–5 Werktage</li>
+          </ul>
+          <div class="btnrow">
+            <a class="btn" href="#kontakt">Anfragen</a>
+            <a class="btn" href="#beispiele">Beispiele</a>
+          </div>
+        </div>
+
+        <div class="card pkg">
+          <span class="badge">Best Value</span>
+          <h3>Growth Pack</h3>
+          <div class="price">€599</div>
+          <div class="once">Einmalige Zahlung</div>
+          <ul>
+            <li>6 Video Ads + 6 Bild Ads</li>
+            <li>10 Hook-Varianten</li>
+            <li>1 Revision</li>
+            <li>Delivery: 5–7 Werktage</li>
+          </ul>
+          <div class="btnrow">
+            <a class="btn primary" href="#kontakt">Anfragen</a>
+            <a class="btn" href="#beispiele">Beispiele</a>
+          </div>
+        </div>
+
+        <div class="card pkg">
+          <h3>Pro Pack</h3>
+          <div class="price">€899</div>
+          <div class="once">Einmalige Zahlung</div>
+          <ul>
+            <li>10 Video Ads + 10 Bild Ads</li>
+            <li>15 Hook-Varianten</li>
+            <li>2 Revisionen</li>
+            <li>Delivery: 7–10 Werktage</li>
+          </ul>
+          <div class="btnrow">
+            <a class="btn" href="#kontakt">Anfragen</a>
+            <a class="btn" href="#beispiele">Beispiele</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:14px;">
+        Optional später: Media Buying / Kampagnen-Setup (nur nach Absprache). Kernfokus bleibt Creative Output.
+      </p>
+    </div>
+  </section>
+
+  <!-- EXAMPLES -->
+  <section id="beispiele">
+    <div class="container reveal">
+      <h2 class="section-title">Beispiele</h2>
+      <p class="section-kicker">
+        Horizontales Scrollen. Beispiele können Concept Examples sein, sofern nicht anders gekennzeichnet.
+      </p>
+
+      <div class="scroller-wrap">
+        <div class="scroller-head">
+          <div class="small">Swipe/Scroll →</div>
+          <div class="small">Format: Landscape-Karten</div>
+        </div>
+
+        <div class="scroller" aria-label="Beispiele Scroller">
+          <!-- PLACEHOLDER 1 -->
+          <article class="ex">
+            <div class="thumb">PLACEHOLDER: VIDEO/IMAGE<br>(Beauty – Concept Example)</div>
+            <div class="ex-meta">
+              <strong>Beauty – Concept Example</strong>
+              <div class="tags">
+                <span class="tag">Reel 9:16</span>
+                <span class="tag">Hook + CTA</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PLACEHOLDER 2 -->
+          <article class="ex">
+            <div class="thumb">PLACEHOLDER: VIDEO/IMAGE<br>(Gastro – Concept Example)</div>
+            <div class="ex-meta">
+              <strong>Gastro – Concept Example</strong>
+              <div class="tags">
+                <span class="tag">Story 9:16</span>
+                <span class="tag">Special/Offer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PLACEHOLDER 3 -->
+          <article class="ex">
+            <div class="thumb">PLACEHOLDER: VIDEO/IMAGE<br>(Local Service – Concept Example)</div>
+            <div class="ex-meta">
+              <strong>Service – Concept Example</strong>
+              <div class="tags">
+                <span class="tag">Feed 4:5</span>
+                <span class="tag">Lead Focus</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PLACEHOLDER 4 -->
+          <article class="ex">
+            <div class="thumb">PLACEHOLDER: VIDEO/IMAGE<br>(Beauty – Concept Example)</div>
+            <div class="ex-meta">
+              <strong>Beauty – Concept Example</strong>
+              <div class="tags">
+                <span class="tag">Reel 9:16</span>
+                <span class="tag">Before/After Copy*</span>
+              </div>
+              <div class="small" style="margin-top:8px;">*ohne medizinische Claims</div>
+            </div>
+          </article>
+
+          <!-- PLACEHOLDER 5 -->
+          <article class="ex">
+            <div class="thumb">PLACEHOLDER: VIDEO/IMAGE<br>(Gastro – Concept Example)</div>
+            <div class="ex-meta">
+              <strong>Gastro – Concept Example</strong>
+              <div class="tags">
+                <span class="tag">Reel 9:16</span>
+                <span class="tag">Location</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PLACEHOLDER 6 -->
+          <article class="ex">
+            <div class="thumb">PLACEHOLDER: VIDEO/IMAGE<br>(Service – Concept Example)</div>
+            <div class="ex-meta">
+              <strong>Service – Concept Example</strong>
+              <div class="tags">
+                <span class="tag">Story 9:16</span>
+                <span class="tag">CTA</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="ablauf">
+    <div class="container reveal">
+      <h2 class="section-title">Ablauf</h2>
+      <p class="section-kicker">Ein klarer Prozess, damit du schnell testen kannst.</p>
+
+      <div class="steps">
+        <div class="card step">
+          <div class="stepnum">01</div>
+          <h3>Brief (5 Minuten)</h3>
+          <p>Angebot, Zielgruppe, Stil. Optional: vorhandene Fotos/Videos.</p>
+        </div>
+        <div class="card step">
+          <div class="stepnum">02</div>
+          <h3>Produktion</h3>
+          <p>Creatives + Hooks + Varianten. Ad-ready für deine Kanäle.</p>
+        </div>
+        <div class="card step">
+          <div class="stepnum">03</div>
+          <h3>Delivery & Revision</h3>
+          <p>Finale Dateien + 1 Anpassungsrunde (Pro Pack: 2).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI LOGIC -->
+  <section>
+    <div class="container roi reveal">
+      <div>
+        <h2 class="section-title">Warum das wirtschaftlich Sinn macht</h2>
+        <p class="section-kicker">
+          Gute Creatives helfen, mehr relevante Anfragen zu erzeugen. Keine Versprechen — aber ein klarer Test-Ansatz.
+        </p>
+        <ul class="clean">
+          <li>Mehr Hooks → mehr Tests → schnellerer Lernprozess</li>
+          <li>Ein Paket liefert Assets für mehrere Kampagnen/Angebote</li>
+          <li>Klare Kommunikation reduziert Missverständnisse & schlechte Leads</li>
+        </ul>
+      </div>
+
+      <div class="calc">
+        <div class="row"><span>Beispiel (Szenario)</span><strong>ohne Garantie</strong></div>
+        <div class="row"><span>Ø Wert pro Neukunde</span><strong>€X</strong></div>
+        <div class="row"><span>Neukunden durch bessere Creatives</span><strong>5–10</strong></div>
+        <div class="row"><span>Potenzial</span><strong>€5X – €10X</strong></div>
+        <div class="small" style="margin-top:10px;">
+          Ersetze X durch deinen realen Kundenwert. Ziel ist: saubere Tests + bessere Anfragen.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container reveal">
+      <h2 class="section-title">FAQ</h2>
+      <p class="section-kicker">Die häufigsten Fragen — kurz beantwortet.</p>
+
+      <div class="faq">
+        <details>
+          <summary>Brauchen wir ein Shooting oder Vor-Ort-Dreh?</summary>
+          <p>Nein. Wir arbeiten remote mit ad-optimierten Visuals und/oder deinem vorhandenen Material.</p>
+        </details>
+        <details>
+          <summary>Was brauchst du von mir, um zu starten?</summary>
+          <p>Angebot, Zielgruppe, Öffnungszeiten/Location (falls relevant) und optional bestehende Inhalte/Branding.</p>
+        </details>
+        <details>
+          <summary>Wie schnell ist die Lieferung?</summary>
+          <p>Je nach Paket 3–10 Werktage. Starter ist am schnellsten.</p>
+        </details>
+        <details>
+          <summary>Sind das echte Kundenbeispiele?</summary>
+          <p>Sofern nicht anders gekennzeichnet, können Beispiele „Concept Examples“ sein (ohne Kundendaten/Logos).</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt">
+    <div class="container reveal">
+      <h2 class="section-title">Kontakt</h2>
+      <p class="section-kicker">
+        Schreib kurz: Branche + Angebot + Ziel (z.B. „mehr Buchungen“). Ich antworte werktags meist innerhalb von 24h.
+      </p>
+
+      <div class="final-cta">
+        <div>
+          <strong>Adframe Studio Vienna</strong><br />
+          <span class="muted">Ads & Creatives zur Kundengewinnung (Österreich)</span>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn" href="mailto:adframestudio@proton.me">E-Mail</a>
+          <a class="btn primary" href="https://instagram.com/adframestudiovienna" target="_blank" rel="noreferrer">Instagram DM</a>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:14px;">
+        Hinweis: Keine Ergebnisgarantien. Fokus ist Creative Output, saubere Kommunikation und testbare Ads.
+      </p>
+    </div>
+  </section>
 
   <footer>
-    Hinweis: Gezeigte Beispiele können Konzept- oder Beispiel-Creatives sein,
-    sofern nicht ausdrücklich anders gekennzeichnet.
+    © <span id="year"></span> Adframe Studio Vienna · Hinweis: Concept Examples möglich · Österreich
   </footer>
 
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Header shrink on scroll
+    const topbar = document.getElementById("topbar");
+    const onScroll = () => {
+      if (window.scrollY > 20) topbar.classList.add("shrink");
+      else topbar.classList.remove("shrink");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Reveal on scroll (IntersectionObserver)
+    const reveals = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("in");
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => io.observe(el));
+  </script>
 </body>
 </html>
 
