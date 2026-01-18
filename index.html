@@ -328,6 +328,11 @@
       transition: transform .15s ease, border-color .15s ease;
     }
     .pkg:hover{transform: translateY(-3px); border-color:#d6d9e3}
+
+    /* FIX: prevent badge overlap with title */
+    .pkg.has-badge{ padding-top: 8px; }
+    .pkg.has-badge h3{ padding-right: 92px; line-height:1.25; }
+
     .badge{
       position:absolute; top:14px; right:14px;
       background:var(--text); color:#fff;
@@ -447,6 +452,72 @@
     .calc .row span{color:var(--muted); font-size:14px}
     .calc .row strong{font-size:14px}
 
+    /* Team hero photo section (full-bleed) */
+    .team-hero{
+      padding: 0;
+    }
+    .team-hero-bleed{
+      width: 100%;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .team-hero-bleed::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,.14); /* ~14% darkening */
+      z-index: 2;
+      pointer-events:none;
+    }
+    .team-hero-bleed::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height: 42%;
+      background: linear-gradient(to top, rgba(0,0,0,.28), rgba(0,0,0,0));
+      z-index: 2;
+      pointer-events:none;
+    }
+    .team-hero-img{
+      width: 100%;
+      height: min(62vh, 560px);
+      display:block;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.01);
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .team-hero-content{
+      position:absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 26px;
+      z-index: 3;
+      width: min(var(--max), 100%);
+      padding: 0 20px;
+    }
+    .team-hero-card{
+      max-width: 720px;
+      border:1px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.80);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.18);
+    }
+    .team-hero-card h2{
+      margin:0 0 6px;
+      font-size: 18px;
+      letter-spacing: -.01em;
+    }
+    .team-hero-card p{
+      margin:0;
+      color: rgba(20,23,32,.80);
+      font-size: 14px;
+    }
+
     /* FAQ accordion */
     .faq{
       display:grid;
@@ -514,6 +585,8 @@
       .headline{font-size:38px}
       .ex{width: 300px}
       .hv-grid{ grid-template-columns:1fr; }
+      .team-hero-img{ height: min(56vh, 520px); }
+      .team-hero-content{ bottom: 18px; }
     }
 
     /* Mobile nav improvement */
@@ -716,7 +789,7 @@
         </div>
 
         <!-- PACKAGE 2 -->
-        <div class="card pkg">
+        <div class="card pkg has-badge">
           <span class="badge">Best Value</span>
           <h3>Content Pack (Ad-ready)</h3>
           <div class="price">€399</div>
@@ -909,6 +982,19 @@
     </div>
   </section>
 
+  <!-- TEAM HERO PHOTO (inserted BEFORE contact) -->
+  <section class="team-hero reveal" aria-label="Team & Zusammenarbeit">
+    <div class="team-hero-bleed">
+      <img class="team-hero-img" src="images/teamfoto.png" alt="Adframe Studio Vienna Team" />
+      <div class="team-hero-content">
+        <div class="team-hero-card">
+          <h2>Zusammenarbeit auf Augenhöhe – klar, direkt, performance-orientiert.</h2>
+          <p>Kein anonymes Netzwerk. Klare Ansprechpartner, saubere Prozesse und schnelle Umsetzung – österreichweit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ROI LOGIC -->
   <section>
     <div class="container roi reveal">
@@ -1023,4 +1109,5 @@
   </script>
 </body>
 </html>
+
 
