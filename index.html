@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adframe Studio Vienna</title>
-  <meta name="description" content="Ads zur Kundengewinnung für lokale Unternehmen in Österreich. Ad Creatives (Video & Bild) – remote, schnell, ad-ready." />
+  <meta name="description" content="Ads zur Kundengewinnung für lokale Unternehmen in Österreich. Ad Creatives (Video & Bild) – conversion-orientiert, schnell, ad-ready." />
 
   <style>
     :root{
@@ -48,8 +48,11 @@
       display:flex; align-items:center; gap:12px; text-decoration:none;
       min-width: 160px;
     }
-    .brand img{height:150px; width:auto; display:block; transition:height .25s ease}
-    .topbar.shrink .brand img{height:28px}
+    /* Header logo sizing (desktop) */
+    .brand img{height:56px; width:auto; display:block; transition:height .25s ease}
+    /* Header logo sizing (scrolled) */
+    .topbar.shrink .brand img{height:42px}
+
     .nav{
       display:flex; gap:18px; align-items:center;
       font-size:14px;
@@ -74,17 +77,9 @@
     }
     .btn.primary:hover{background:#12151c}
 
-    /* Logo-only header block */
-    header.logo-only{
-      padding:54px 0 34px;
-      text-align:center;
-    }
-    header.logo-only img{
-      max-width:600px;
-      width: min(600px, 150vw);
-      height:auto;
-      display:inline-block;
-    }
+    /* Logo-only header block (kept but not used now) */
+    header.logo-only{display:none}
+    header.logo-only img{display:none}
 
     /* Sections */
     section{padding:72px 0}
@@ -101,7 +96,7 @@
       max-width: 760px;
     }
 
-    /* Hero */
+    /* Hero base */
     .hero{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -116,6 +111,7 @@
     }
     .subhead{margin:0 0 18px; color:var(--muted); max-width: 760px}
     .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px}
+
     .hero-bullets{
       border:1px solid var(--line);
       border-radius: var(--radius);
@@ -130,6 +126,172 @@
     .bullet:last-child{border-bottom:0}
     .dot{
       width:8px; height:8px; border-radius:999px; background:var(--text); margin-top:6px; flex:0 0 auto;
+    }
+
+    /* ===== HERO PRO (premium) ===== */
+    .hero-section{
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      background:#fff;
+      padding:7px 10px;
+      border-radius:999px;
+      margin-bottom:14px;
+      box-shadow: 0 6px 18px rgba(10,12,15,.04);
+    }
+    .hero-note{
+      max-width: 720px;
+      margin-top: 12px;
+    }
+    .hero-micro{
+      margin-top: 16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .micro-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid rgba(230,232,238,.9);
+      background: var(--soft);
+      padding:8px 10px;
+      border-radius:999px;
+    }
+    .micro-dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--text);
+      opacity:.8;
+    }
+    .hero-frame{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background:#fff;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-visual{
+      position:relative;
+      padding:18px;
+      background:
+        radial-gradient(1200px 400px at 10% 0%, rgba(11,12,15,.06), transparent 50%),
+        radial-gradient(900px 300px at 90% 10%, rgba(11,12,15,.05), transparent 48%),
+        linear-gradient(180deg, #ffffff, #fbfbfc);
+      border-bottom:1px solid var(--line);
+    }
+    .hv-top{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      margin-bottom:14px;
+    }
+    .hv-pill{
+      height:10px;
+      width:64px;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(11,12,15,.10), rgba(11,12,15,.04));
+    }
+    .hv-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .hv-card{
+      border:1px solid rgba(230,232,238,.9);
+      border-radius:14px;
+      padding:12px;
+      background:#fff;
+      box-shadow: 0 10px 24px rgba(10,12,15,.05);
+      transform: translateZ(0);
+    }
+    .hv-line{
+      height:10px;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(11,12,15,.12), rgba(11,12,15,.04));
+      margin-bottom:10px;
+    }
+    .hv-line.w80{ width:80% }
+    .hv-line.w70{ width:70% }
+    .hv-line.w60{ width:60% }
+    .hv-line.w50{ width:50% }
+    .hv-chip-row{ display:flex; gap:8px; margin-top:8px; }
+    .hv-chip{
+      height:22px;
+      width:44px;
+      border-radius:999px;
+      border:1px solid rgba(230,232,238,.9);
+      background: var(--soft);
+    }
+    .hv-cta{
+      display:flex;
+      gap:10px;
+      margin-top:14px;
+      align-items:center;
+      justify-content:flex-start;
+    }
+    .hv-btn{
+      height:34px;
+      width:120px;
+      border-radius:12px;
+      background: var(--text);
+      opacity:.92;
+      box-shadow: 0 10px 24px rgba(10,12,15,.12);
+    }
+    .hv-btn.ghost{
+      width:92px;
+      background:#fff;
+      border:1px solid rgba(230,232,238,.95);
+      box-shadow:none;
+    }
+    .hv-float{
+      position:absolute;
+      border:1px solid rgba(230,232,238,.9);
+      border-radius:14px;
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 12px 28px rgba(10,12,15,.08);
+      pointer-events:none;
+      animation: floaty 7s ease-in-out infinite;
+    }
+    .hv-float.f1{ width:84px; height:54px; right:18px; top:16px; animation-delay:0s; }
+    .hv-float.f2{ width:110px; height:62px; left:18px; bottom:18px; animation-delay:1.4s; }
+    .hv-float.f3{ width:74px; height:46px; right:44px; bottom:44px; animation-delay:2.3s; }
+
+    @keyframes floaty{
+      0%,100%{ transform: translateY(0) }
+      50%{ transform: translateY(-10px) }
+    }
+
+    .hero-bullets-pro{
+      padding:18px;
+      background:#fff;
+    }
+    .hero-bullets-pro .bullet{
+      color:var(--muted);
+      font-size:14px;
+    }
+    .hero-bullets-pro .bullet strong{
+      color:var(--text);
+    }
+
+    /* staged reveal for hero content */
+    .hero-stagger > *{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .hero-stagger.in > *{
+      opacity:1;
+      transform: translateY(0);
     }
 
     /* Proof stats */
@@ -351,6 +513,7 @@
       .faq{grid-template-columns:1fr}
       .headline{font-size:38px}
       .ex{width: 300px}
+      .hv-grid{ grid-template-columns:1fr; }
     }
 
     /* Mobile nav improvement */
@@ -360,6 +523,13 @@
       .nav a.btn{display:inline-flex}
       .brand{min-width:auto}
       .topbar-inner{gap:10px}
+      .brand img{height:46px}
+      .topbar.shrink .brand img{height:38px}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .hv-float{ animation:none !important; }
+      .hero-stagger > *{ transition:none !important; }
     }
   </style>
 </head>
@@ -383,18 +553,18 @@
     </div>
   </div>
 
+  <!-- HERO (UPDATED: premium + authority bullets + abstract visual) -->
+  <section class="tight hero-section" id="top">
+    <div class="container hero">
+      <!-- LEFT -->
+      <div class="reveal hero-stagger">
+        <div class="hero-pill">Performance Ads · Creatives · Österreich</div>
 
+        <h1 class="headline">Performance Ads zur Kundengewinnung für lokale Unternehmen in Österreich.</h1>
 
-  
-
-  <!-- HERO -->
-  <section class="tight">
-    <div class="container hero reveal">
-      <div>
-        <h1 class="headline">Ads zur Kundengewinnung für lokale Unternehmen in Österreich.</h1>
         <p class="subhead">
-          Wir liefern performante Creatives (Video & Bild) — remote, schnell und ad-ready.
-          Keine Vor-Ort-Drehs. Kein Imagefilm-Fokus.
+          Wir entwickeln conversion-orientierte Werbeanzeigen (Video & Bild) – ausgerichtet auf
+          <strong>Anfragen</strong>, <strong>Buchungen</strong> und <strong>Leads</strong>.
         </p>
 
         <div class="hero-actions">
@@ -403,16 +573,63 @@
           <a class="btn" href="mailto:adframestudio@proton.me">Kontakt per E-Mail</a>
         </div>
 
-        <p class="small" style="margin-top:14px;">
-          Hinweis: Keine Ergebnisgarantien — wir liefern Creatives & klare Kommunikation, damit Ads sauber testbar sind.
+        <p class="small hero-note">
+          Hinweis: Keine Ergebnisgarantien – wir liefern Creatives & klare Kommunikation, damit Ads sauber testbar sind.
         </p>
+
+        <div class="hero-micro">
+          <div class="micro-item"><span class="micro-dot"></span><span><strong>&lt; 24h</strong> Antwortzeit (werktags)</span></div>
+          <div class="micro-item"><span class="micro-dot"></span><span><strong>Projektbasiert</strong> kein Abo</span></div>
+          <div class="micro-item"><span class="micro-dot"></span><span><strong>Ad-ready</strong> 9:16 / 1:1 / 4:5</span></div>
+        </div>
       </div>
 
-      <div class="hero-bullets">
-        <div class="bullet"><span class="dot"></span><span><strong>€50.000+</strong> Mitwirkung an Umsatz durch Ads & Creatives (E-Commerce Projekte)</span></div>
-        <div class="bullet"><span class="dot"></span><span><strong>&lt; 24h</strong> Antwortzeit an Werktagen</span></div>
-        <div class="bullet"><span class="dot"></span><span><strong>Remote</strong> Produktion ohne Studio-Besuch</span></div>
-        <div class="bullet"><span class="dot"></span><span><strong>Sauber</strong> keine aggressiven Claims / brand-safe Messaging</span></div>
+      <!-- RIGHT -->
+      <div class="reveal">
+        <div class="hero-frame">
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hv-top">
+              <div class="hv-pill"></div>
+              <div class="hv-pill"></div>
+              <div class="hv-pill"></div>
+            </div>
+
+            <div class="hv-grid">
+              <div class="hv-card">
+                <div class="hv-line w80"></div>
+                <div class="hv-line w60"></div>
+                <div class="hv-chip-row">
+                  <span class="hv-chip"></span>
+                  <span class="hv-chip"></span>
+                </div>
+              </div>
+              <div class="hv-card">
+                <div class="hv-line w70"></div>
+                <div class="hv-line w50"></div>
+                <div class="hv-chip-row">
+                  <span class="hv-chip"></span>
+                  <span class="hv-chip"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hv-cta">
+              <div class="hv-btn"></div>
+              <div class="hv-btn ghost"></div>
+            </div>
+
+            <div class="hv-float f1"></div>
+            <div class="hv-float f2"></div>
+            <div class="hv-float f3"></div>
+          </div>
+
+          <div class="hero-bullets hero-bullets-pro">
+            <div class="bullet"><span class="dot"></span><span><strong>€50.000+</strong> Mitwirkung an Umsatz durch Ads & Creatives (E-Commerce Projekte)</span></div>
+            <div class="bullet"><span class="dot"></span><span><strong>Performance-first</strong> Hooks, Angebot & CTA – für saubere Tests</span></div>
+            <div class="bullet"><span class="dot"></span><span><strong>Schnelle Umsetzung</strong> klare Prozesse, kurze Feedback-Loops</span></div>
+            <div class="bullet"><span class="dot"></span><span><strong>Für lokale Anbieter</strong> optimiert (Beauty, Gastro, Services, Bau & Handwerk)</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -788,11 +1005,17 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // Reveal on scroll (IntersectionObserver)
+    // Reveal on scroll (IntersectionObserver) + hero stagger support
     const reveals = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add("in");
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          const stagger = e.target.classList.contains("hero-stagger")
+            ? e.target
+            : e.target.querySelector(".hero-stagger");
+          if (stagger) stagger.classList.add("in");
+        }
       });
     }, { threshold: 0.12 });
 
@@ -800,5 +1023,4 @@
   </script>
 </body>
 </html>
-
 
