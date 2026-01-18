@@ -66,6 +66,7 @@
       text-decoration:none;
       font-size:14px;
       transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      display:inline-flex; align-items:center; justify-content:center;
     }
     .btn:hover{background:var(--soft); border-color:#d6d9e3; transform:translateY(-1px)}
     .btn.primary{
@@ -158,8 +159,8 @@
     ul.clean{margin:0; padding-left:18px; color:var(--muted)}
     ul.clean li{margin-bottom:10px}
 
-    /* Packages */
-    .packages{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    /* Packages (updated to 4 clear packages, with website sub-options inside) */
+    .packages{display:grid; grid-template-columns: repeat(4, 1fr); gap:18px}
     .pkg{
       position:relative;
       transition: transform .15s ease, border-color .15s ease;
@@ -176,6 +177,34 @@
     .pkg ul{margin:0; padding-left:18px; color:var(--muted)}
     .pkg li{margin-bottom:8px}
     .pkg .btnrow{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
+
+    .subpack{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(230,232,238,.8);
+      display:grid;
+      gap:12px;
+    }
+    .subpack .opt{
+      border:1px solid rgba(230,232,238,.95);
+      border-radius:12px;
+      padding:12px;
+      background:var(--soft);
+    }
+    .subpack .opt strong{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      font-size:14px;
+      color:var(--text);
+    }
+    .subpack .opt .opt-meta{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.5;
+    }
 
     /* Examples horizontal scroller */
     .scroller-wrap{
@@ -217,6 +246,8 @@
       color:#8b92a3;
       font-size:13px;
       position:relative;
+      text-align:center;
+      padding:12px;
     }
     /* Placeholder for VIDEO: replace div.thumb with <video ...> later */
     .ex-meta{padding:12px 12px 14px}
@@ -321,6 +352,15 @@
       .headline{font-size:38px}
       .ex{width: 300px}
     }
+
+    /* Mobile nav improvement */
+    @media (max-width: 720px){
+      .nav{gap:12px}
+      .nav a{display:none}
+      .nav a.btn{display:inline-flex}
+      .brand{min-width:auto}
+      .topbar-inner{gap:10px}
+    }
   </style>
 </head>
 
@@ -330,7 +370,7 @@
   <div class="topbar" id="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="#top" aria-label="Adframe Studio Vienna">
-        
+        <img src="images/logo.png" alt="Adframe Studio Vienna" />
       </a>
 
       <nav class="nav">
@@ -420,7 +460,7 @@
           <li>Bild-Ads (Feed/Story) mit klarer Message</li>
           <li>Hook-Varianten (mehrere Einstiege pro Angebot)</li>
           <li>Formate: 9:16, 1:1, 4:5</li>
-          <li>1 Revision inklusive (Pro Pack: 2)</li>
+          <li>1 Revision inklusive (je nach Paket)</li>
         </ul>
       </div>
 
@@ -430,23 +470,25 @@
           <li>Beauty & Wellness (Buchungen/Anfragen)</li>
           <li>Gastro (Reservierungen, Specials, Events)</li>
           <li>Lokale Services (Leads/Termine)</li>
+          <li>Bau & Handwerk (Anfragen/Anrufe)</li>
         </ul>
         <p class="small" style="margin-top:12px;">
-          Wir sind kein Filmstudio. Fokus ist: klare Ads, die testbar sind und Anfragen auslösen sollen.
+          Wir sind kein Filmstudio. Fokus ist: klare Ads & klare Angebote, die testbar sind und Anfragen auslösen sollen.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- PACKAGES -->
+  <!-- PACKAGES (UPDATED) -->
   <section id="pakete">
     <div class="container reveal">
       <h2 class="section-title">Pakete</h2>
       <p class="section-kicker">Einmalige Zahlung. Kein Abo. Keine Bindung.</p>
 
       <div class="packages">
+        <!-- PACKAGE 1 -->
         <div class="card pkg">
-          <h3>Starter Pack</h3>
+          <h3>Customer Acquisition Ads</h3>
           <div class="price">€349</div>
           <div class="once">Einmalige Zahlung</div>
           <ul>
@@ -461,16 +503,17 @@
           </div>
         </div>
 
+        <!-- PACKAGE 2 -->
         <div class="card pkg">
           <span class="badge">Best Value</span>
-          <h3>Growth Pack</h3>
-          <div class="price">€599</div>
+          <h3>Content Pack (Ad-ready)</h3>
+          <div class="price">€399</div>
           <div class="once">Einmalige Zahlung</div>
           <ul>
-            <li>6 Video Ads + 6 Bild Ads</li>
-            <li>10 Hook-Varianten</li>
+            <li>6 Ad-ready Visuals (Video/Bild Mix)</li>
+            <li>Klare CTAs & konsistenter Look</li>
             <li>1 Revision</li>
-            <li>Delivery: 5–7 Werktage</li>
+            <li>Delivery: 3–6 Werktage</li>
           </ul>
           <div class="btnrow">
             <a class="btn primary" href="#kontakt">Anfragen</a>
@@ -478,25 +521,60 @@
           </div>
         </div>
 
+        <!-- PACKAGE 3 -->
         <div class="card pkg">
-          <h3>Pro Pack</h3>
-          <div class="price">€899</div>
+          <h3>Creative Refresh</h3>
+          <div class="price">€249</div>
           <div class="once">Einmalige Zahlung</div>
           <ul>
-            <li>10 Video Ads + 10 Bild Ads</li>
-            <li>15 Hook-Varianten</li>
-            <li>2 Revisionen</li>
-            <li>Delivery: 7–10 Werktage</li>
+            <li>Re-Edit bestehender Inhalte</li>
+            <li>Neue Hooks, Texte & CTAs</li>
+            <li>Optimiert für Ads</li>
+            <li>1 Revision</li>
           </ul>
           <div class="btnrow">
             <a class="btn" href="#kontakt">Anfragen</a>
             <a class="btn" href="#beispiele">Beispiele</a>
           </div>
         </div>
+
+        <!-- PACKAGE 4 (WEBSITE) -->
+        <div class="card pkg">
+          <h3>Lead Website</h3>
+          <div class="price">ab €499</div>
+          <div class="once">Einmalige Zahlung</div>
+          <ul>
+            <li>Mobile-first, schnell, clean</li>
+            <li>CTA: Anruf / WhatsApp / Formular</li>
+            <li>Tracking-ready (Platzhalter)</li>
+          </ul>
+
+          <div class="subpack">
+            <div class="opt">
+              <strong>
+                <span>Anfrageseite (1 Seite)</span>
+                <span>€499</span>
+              </strong>
+              <div class="opt-meta">1 Landingpage · klare CTAs · Maps · Veröffentlichung ohne laufende Kosten</div>
+            </div>
+            <div class="opt">
+              <strong>
+                <span>Mini-Website (3 Seiten)</span>
+                <span>€899</span>
+              </strong>
+              <div class="opt-meta">Start · Leistungen · Kontakt · Basis SEO · strukturiert für Vertrauen & Anfragen</div>
+            </div>
+          </div>
+
+          <div class="btnrow">
+            <a class="btn" href="#kontakt">Anfragen</a>
+            <a class="btn" href="#ablauf">Ablauf</a>
+          </div>
+        </div>
       </div>
 
       <p class="small" style="margin-top:14px;">
-        Optional später: Media Buying / Kampagnen-Setup (nur nach Absprache). Kernfokus bleibt Creative Output.
+        Add-ons (optional): Copywriting +€149 · Tracking Setup (Meta/GA4) +€149 · Zusätzliche Revision +€79
       </p>
     </div>
   </section>
@@ -554,14 +632,14 @@
 
           <!-- PLACEHOLDER 4 -->
           <article class="ex">
-            <div class="thumb">PLACEHOLDER: VIDEO/IMAGE<br>(Beauty – Concept Example)</div>
+            <div class="thumb">PLACEHOLDER: VIDEO/IMAGE<br>(Bau/Handwerk – Concept Example)</div>
             <div class="ex-meta">
-              <strong>Beauty – Concept Example</strong>
+              <strong>Bau/Handwerk – Concept Example</strong>
               <div class="tags">
-                <span class="tag">Reel 9:16</span>
-                <span class="tag">Before/After Copy*</span>
+                <span class="tag">Landing CTA</span>
+                <span class="tag">Anruf/WhatsApp</span>
               </div>
-              <div class="small" style="margin-top:8px;">*ohne medizinische Claims</div>
+              <div class="small" style="margin-top:8px;">*ohne irreführende Versprechen</div>
             </div>
           </article>
 
@@ -613,7 +691,7 @@
         <div class="card step">
           <div class="stepnum">03</div>
           <h3>Delivery & Revision</h3>
-          <p>Finale Dateien + 1 Anpassungsrunde (Pro Pack: 2).</p>
+          <p>Finale Dateien + 1 Anpassungsrunde (je nach Paket).</p>
         </div>
       </div>
     </div>
@@ -663,7 +741,7 @@
         </details>
         <details>
           <summary>Wie schnell ist die Lieferung?</summary>
-          <p>Je nach Paket 3–10 Werktage. Starter ist am schnellsten.</p>
+          <p>Je nach Paket 3–10 Werktage. Für Websites: Anfrageseite meist 3–6 Werktage, Mini-Website 5–10 Werktage.</p>
         </details>
         <details>
           <summary>Sind das echte Kundenbeispiele?</summary>
