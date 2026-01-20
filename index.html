@@ -407,26 +407,28 @@
       background:#fff;
     }
 
-    /* UPDATED: allow real images in examples */
-    .thumb{
-      height:200px;
-      background: linear-gradient(135deg, #f2f4f8, #e9ecf4);
-      display:flex; align-items:center; justify-content:center;
-      color:#8b92a3;
-      font-size:13px;
-      position:relative;
-      text-align:center;
-      padding:12px;
-      overflow:hidden;
-    }
-    .thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transform: scale(1.01);
-      filter: saturate(1.02) contrast(1.02);
-    }
+.thumb{
+  aspect-ratio: 9 / 16;
+  height: auto;          /* wichtig */
+  padding: 0;            /* wichtig */
+  background: #eef0f5;
+  overflow: hidden;
+  display:block;
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+
+
+
+
+
+
+    
 
     .ex-meta{padding:12px 12px 14px}
     .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
