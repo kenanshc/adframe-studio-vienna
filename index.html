@@ -1,3 +1,4 @@
+<!-- PART 1/4 -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -321,7 +322,7 @@
     ul.clean{margin:0; padding-left:18px; color:var(--muted)}
     ul.clean li{margin-bottom:10px}
 
-    /* Packages (updated to 4 clear packages, with website sub-options inside) */
+    /* Packages */
     .packages{display:grid; grid-template-columns: repeat(4, 1fr); gap:18px}
     .pkg{
       position:relative;
@@ -407,28 +408,20 @@
       background:#fff;
     }
 
-.thumb{
-  aspect-ratio: 9 / 16;
-  height: auto;          /* wichtig */
-  padding: 0;            /* wichtig */
-  background: #eef0f5;
-  overflow: hidden;
-  display:block;
-}
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-
-
-
-
-
-
-
-    
+    .thumb{
+      aspect-ratio: 9 / 16;
+      height: auto;
+      padding: 0;
+      background: #eef0f5;
+      overflow: hidden;
+      display:block;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
 
     .ex-meta{padding:12px 12px 14px}
     .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
@@ -466,9 +459,7 @@
     .calc .row strong{font-size:14px}
 
     /* Team hero photo section (full-bleed) */
-    .team-hero{
-      padding: 0;
-    }
+    .team-hero{ padding: 0; }
     .team-hero-bleed{
       width: 100%;
       margin: 0;
@@ -480,7 +471,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background: rgba(0,0,0,.14); /* ~14% darkening */
+      background: rgba(0,0,0,.14);
       z-index: 2;
       pointer-events:none;
     }
@@ -619,7 +610,7 @@
     }
   </style>
 </head>
-
+<!-- PART 2/4 -->
 <body>
 
   <!-- Sticky nav -->
@@ -634,12 +625,13 @@
         <a href="#beispiele">Beispiele</a>
         <a href="#ablauf">Ablauf</a>
         <a class="btn" href="mailto:adframe.studio.vienna@gmail.com">E-Mail</a>
-        <a class="btn primary" href="#kontakt">Anfragen</a>
+        <!-- FIX: Header "Anfragen" führt zur Paket-Sektion -->
+        <a class="btn primary" href="#pakete">Anfragen</a>
       </nav>
     </div>
   </div>
 
-  <!-- HERO (UPDATED: premium + authority bullets + abstract visual) -->
+  <!-- HERO -->
   <section class="tight hero-section" id="top">
     <div class="container hero">
       <!-- LEFT -->
@@ -785,17 +777,18 @@
       <div class="packages">
         <!-- PACKAGE 1 -->
         <div class="card pkg">
-          <h3>Customer Acquisition Ads</h3>
+          <h3>Starter Ads</h3>
           <div class="price">€349</div>
           <div class="once">Einmalige Zahlung</div>
           <ul>
-            <li>3 Video Ads + 3 Bild Ads</li>
-            <li>5 Hook-Varianten</li>
+            <li><strong>10 Bild-Ads</strong> (9:16 / 1:1 / 4:5)</li>
+            <li><strong>2 Kurzvideo-Ads</strong> (6–12s)</li>
+            <li>Hook/Angle-Varianten für Tests</li>
             <li>1 Revision</li>
             <li>Delivery: 3–5 Werktage</li>
           </ul>
           <div class="btnrow">
-            <a class="btn" href="#kontakt">Anfragen</a>
+            <a class="btn" href="https://forms.gle/zatrjJCA8f4Ki8ro7" target="_blank" rel="noreferrer">Anfragen</a>
             <a class="btn" href="#beispiele">Beispiele</a>
           </div>
         </div>
@@ -803,34 +796,36 @@
         <!-- PACKAGE 2 -->
         <div class="card pkg has-badge">
           <span class="badge">Best Value</span>
-          <h3>Content Pack (Ad-ready)</h3>
-          <div class="price">€399</div>
+          <h3>Growth Ads</h3>
+          <div class="price">€449</div>
           <div class="once">Einmalige Zahlung</div>
           <ul>
-            <li>6 Ad-ready Visuals (Video/Bild Mix)</li>
-            <li>Klare CTAs & konsistenter Look</li>
+            <li><strong>20 Bild-Ads</strong> (mehr Varianten/Angles)</li>
+            <li><strong>4 Kurzvideo-Ads</strong> (6–15s)</li>
+            <li>Mehr Hooks + CTAs für A/B Tests</li>
             <li>1 Revision</li>
             <li>Delivery: 3–6 Werktage</li>
           </ul>
           <div class="btnrow">
-            <a class="btn primary" href="#kontakt">Anfragen</a>
+            <a class="btn primary" href="https://forms.gle/zatrjJCA8f4Ki8ro7" target="_blank" rel="noreferrer">Anfragen</a>
             <a class="btn" href="#beispiele">Beispiele</a>
           </div>
         </div>
 
         <!-- PACKAGE 3 -->
         <div class="card pkg">
-          <h3>Creative Refresh</h3>
-          <div class="price">€249</div>
+          <h3>Scale Ads</h3>
+          <div class="price">€799</div>
           <div class="once">Einmalige Zahlung</div>
           <ul>
-            <li>Re-Edit bestehender Inhalte</li>
-            <li>Neue Hooks, Texte & CTAs</li>
-            <li>Optimiert für Ads</li>
+            <li><strong>30 Bild-Ads</strong> (full testing library)</li>
+            <li><strong>10 Kurzvideo-Ads</strong> (6–15s)</li>
+            <li>Mehr Offer-Angles + Retargeting Varianten</li>
             <li>1 Revision</li>
+            <li>Delivery: 5–10 Werktage</li>
           </ul>
           <div class="btnrow">
-            <a class="btn" href="#kontakt">Anfragen</a>
+            <a class="btn" href="https://forms.gle/zatrjJCA8f4Ki8ro7" target="_blank" rel="noreferrer">Anfragen</a>
             <a class="btn" href="#beispiele">Beispiele</a>
           </div>
         </div>
@@ -864,7 +859,7 @@
           </div>
 
           <div class="btnrow">
-            <a class="btn" href="#kontakt">Anfragen</a>
+            <a class="btn" href="https://forms.gle/rJUnV6pK9EkdN5uZ6" target="_blank" rel="noreferrer">Anfragen</a>
             <a class="btn" href="#ablauf">Ablauf</a>
           </div>
         </div>
@@ -875,7 +870,7 @@
       </p>
     </div>
   </section>
-
+<!-- PART 3/4 -->
   <!-- EXAMPLES -->
   <section id="beispiele">
     <div class="container reveal">
@@ -971,7 +966,7 @@
     </div>
   </section>
 
-  <!-- TEAM HERO PHOTO (inserted BEFORE contact) -->
+  <!-- TEAM HERO PHOTO -->
   <section class="team-hero reveal" aria-label="Team & Zusammenarbeit">
     <div class="team-hero-bleed">
       <img class="team-hero-img" src="images/teamfoto.png" alt="Adframe Studio Vienna Team" />
@@ -1010,7 +1005,7 @@
       </div>
     </div>
   </section>
-
+<!-- PART 4/4 -->
   <!-- FAQ -->
   <section>
     <div class="container reveal">
@@ -1098,6 +1093,3 @@
   </script>
 </body>
 </html>
-
-
-
